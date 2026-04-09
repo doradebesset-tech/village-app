@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Village — Stay Close, No Matter the Distance</title>
+  <meta name="description" content="Village is a cozy social space for the friends who matter most. Share quests, build memories, and stay close — no matter where life takes you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Design tokens ── */
+    :root {
+      --bg:         #1a1208;
+      --bg-panel:   #221608;
+      --cream:      #f5e6c8;
+      --cream-muted:#a89070;
+      --gold:       #e8a735;
+      --pixel:      'Press Start 2P', monospace;
+      --body:       'Courier New', Courier, monospace;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Container ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Pixel button ── */
+    .btn {
+      display: inline-block;
+      font-family: var(--pixel);
+      font-size: 9px;
+      padding: 14px 22px;
+      background: var(--gold);
+      color: var(--bg);
+      border: 3px solid var(--bg);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.1s;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      -webkit-font-smoothing: none;
+    }
+    .btn:hover  { transform: translateY(-2px); box-shadow: 4px 6px 0 rgba(0,0,0,0.4); }
+    .btn:active { transform: translateY(2px);  box-shadow: 2px 2px 0 rgba(0,0,0,0.4); }
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border-color: var(--gold);
+      box-shadow: 3px 3px 0 rgba(232,167,53,0.3);
+      font-size: 8px;
+      padding: 10px 16px;
+    }
+    .btn-outline:hover { transform: translateY(-2px); box-shadow: 3px 5px 0 rgba(232,167,53,0.3); }
+
+    /* ── Header ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      background: rgba(26,18,8,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(232,167,53,0.12);
+      transition: box-shadow 0.2s;
+    }
+    header.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.5); }
+    .header-logo {
+      font-family: var(--pixel);
+      font-size: 13px;
+      color: var(--gold);
+      -webkit-font-smoothing: none;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      position: relative;
+      height: 100svh;
+      min-height: 560px;
+      display: flex;
+      align-items: flex-end;
+      background: url('town.png') center / cover no-repeat;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(26,18,8,0.1) 0%,
+        rgba(26,18,8,0.35) 40%,
+        rgba(26,18,8,0.85) 75%,
+        #1a1208 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      padding: 0 24px 80px;
+    }
+    .hero-eyebrow {
+      font-family: var(--body);
+      font-size: 12px;
+      color: var(--cream-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: var(--pixel);
+      font-size: clamp(28px, 6vw, 52px);
+      color: var(--gold);
+      -webkit-font-smoothing: none;
+      line-height: 1.3;
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+    .hero-tagline {
+      font-family: var(--body);
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--cream);
+      margin-bottom: 36px;
+      opacity: 0.9;
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      transform: translateX(-50%) rotate(45deg);
+      opacity: 0.5;
+      animation: bounce 1.6s ease-in-out infinite;
+      transition: opacity 0.4s;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) rotate(45deg) translateY(0); }
+      50%       { transform: translateX(-50%) rotate(45deg) translateY(6px); }
+    }
+
+    /* ── Section divider ── */
+    .divider {
+      border: none;
+      border-top: 3px dashed rgba(232,167,53,0.18);
+      margin: 0;
+    }
+
+    /* ── Features ── */
+    #features {
+      background: var(--bg);
+      padding: 96px 0;
+    }
+    .section-heading {
+      font-family: var(--pixel);
+      font-size: clamp(9px, 1.2vw, 12px);
+      color: var(--cream);
+      -webkit-font-smoothing: none;
+      line-height: 1.8;
+      text-align: center;
+      margin-bottom: 64px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px 40px;
+    }
+    .pillar {
+      text-align: center;
+    }
+    .pillar-icon {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .pillar-title {
+      font-family: var(--pixel);
+      font-size: 8px;
+      color: var(--gold);
+      -webkit-font-smoothing: none;
+      margin-bottom: 14px;
+      line-height: 1.6;
+      letter-spacing: 0.03em;
+    }
+    .pillar-body {
+      font-family: var(--body);
+      font-size: 13px;
+      color: var(--cream-muted);
+      line-height: 1.7;
+    }
+
+    /* ── Characters ── */
+    #characters {
+      background: var(--bg-panel);
+      padding: 80px 0;
+    }
+    .characters-heading {
+      font-family: var(--pixel);
+      font-size: 10px;
+      color: var(--gold);
+      -webkit-font-smoothing: none;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .grid-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 8px;
+    }
+    .grid-scroll::-webkit-scrollbar {
+      height: 3px;
+    }
+    .grid-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); }
+    .grid-scroll::-webkit-scrollbar-thumb { background: rgba(232,167,53,0.3); border-radius: 2px; }
+    .grid-img {
+      height: 96px;
+      width: auto;
+      max-width: none;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      margin: 0 auto;
+    }
+    .characters-sub {
+      font-family: var(--body);
+      font-style: italic;
+      font-size: 12px;
+      color: var(--cream-muted);
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    /* ── CTA ── */
+    #cta {
+      background: var(--bg);
+      padding: 112px 24px;
+      text-align: center;
+    }
+    .cta-heading {
+      font-family: var(--pixel);
+      font-size: clamp(12px, 2vw, 16px);
+      color: var(--cream);
+      -webkit-font-smoothing: none;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .cta-sub {
+      font-family: var(--body);
+      font-size: 14px;
+      color: var(--cream-muted);
+      margin-bottom: 40px;
+    }
+    .cta-fine {
+      margin-top: 20px;
+      font-family: var(--body);
+      font-size: 11px;
+      color: var(--cream-muted);
+      opacity: 0.6;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid rgba(232,167,53,0.1);
+      padding: 24px;
+      text-align: center;
+      font-family: var(--body);
+      font-size: 11px;
+      color: var(--cream-muted);
+      opacity: 0.6;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 720px) {
+      .pillars {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      #features { padding: 72px 0; }
+      .section-heading { font-size: 9px; margin-bottom: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="site-header">
+    <span class="header-logo">Village</span>
+    <a href="../index.html" class="btn btn-outline">Enter &rarr;</a>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">For the friends who matter most</p>
+      <h1 class="hero-title">Village</h1>
+      <p class="hero-tagline">Stay close, no matter the distance.</p>
+      <a href="../index.html" class="btn">Enter the Village &rarr;</a>
+    </div>
+    <span class="scroll-hint" id="scroll-hint" aria-hidden="true"></span>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Features -->
+  <section id="features">
+    <div class="container">
+      <h2 class="section-heading">A village for the people<br />you'd call at 2am.</h2>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">&#128221;</div>
+          <h3 class="pillar-title">Weekly Quests</h3>
+          <p class="pillar-body">Shared rituals that keep everyone in sync — morning brews, sunset photos, recipe swaps.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">&#128506;</div>
+          <h3 class="pillar-title">Your Village</h3>
+          <p class="pillar-body">A living map of your closest people. See who's awake, where they are, what they're up to.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">&#128214;</div>
+          <h3 class="pillar-title">Town Square</h3>
+          <p class="pillar-body">Every completed quest becomes a memory. Your history, together, archived forever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Characters -->
+  <section id="characters">
+    <div class="container">
+      <h2 class="characters-heading">Meet the Villagers</h2>
+      <div class="grid-scroll">
+        <img
+          src="peoplegrid.png"
+          alt="The 12 villagers of Village — pixel art characters from all over the world"
+          class="grid-img"
+        />
+      </div>
+      <p class="characters-sub">12 friends. All over the world. One village.</p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CTA -->
+  <section id="cta">
+    <h2 class="cta-heading">Your village is waiting.</h2>
+    <p class="cta-sub">No downloads. No accounts. Just open the door.</p>
+    <a href="../index.html" class="btn">Open Village &rarr;</a>
+    <p class="cta-fine">Works in any browser. Free to explore.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Village &mdash; Made with care, no matter the distance.
+  </footer>
+
+  <script>
+    // Sticky header shadow on scroll
+    const header = document.getElementById('site-header');
+    const hint = document.getElementById('scroll-hint');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+      if (window.scrollY > 80) hint.style.opacity = '0';
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

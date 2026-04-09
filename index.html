@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Village — Stay Close, No Matter the Distance</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/town.css">
+  <link rel="stylesheet" href="css/pixel-ui.css">
+  <link rel="stylesheet" href="css/panels.css">
+</head>
+<body>
+
+<div id="app">
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-logo">Village</div>
+    <div class="loading-tagline">Stay close, no matter the distance</div>
+    <div class="loading-bar-container">
+      <div class="loading-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- Town Map (base layer) -->
+  <div id="town"></div>
+
+  <!-- Day/Night Overlay -->
+  <div id="daynight-overlay"></div>
+
+  <!-- Overlay Dim (behind panels) -->
+  <div id="overlay-dim"></div>
+
+  <!-- Profile Card (floating near villager) -->
+  <div id="profile-card"></div>
+
+  <!-- Quest Board Panel (right) -->
+  <div id="quest-panel" class="panel panel-right">
+    <div class="panel-header">
+      <h2>📜 Village Quests</h2>
+      <button class="btn-close" aria-label="Close">✕</button>
+    </div>
+    <div class="panel-body"></div>
+  </div>
+
+  <!-- Town Square Panel (left) -->
+  <div id="memory-panel" class="panel panel-left">
+    <div class="panel-header">
+      <h2>📖 Town Square</h2>
+      <button class="btn-close" aria-label="Close">✕</button>
+    </div>
+    <div class="panel-body"></div>
+  </div>
+
+  <!-- Friends Panel (narrow right) -->
+  <div id="friends-panel" class="panel panel-right-narrow">
+    <div class="panel-header">
+      <h2>👥 Friends</h2>
+      <button class="btn-close" aria-label="Close">✕</button>
+    </div>
+    <div class="panel-body"></div>
+  </div>
+
+  <!-- Notification Feed (dropdown) -->
+  <div id="notification-feed"></div>
+
+  <!-- Walk-through bar -->
+  <div id="walkthrough-bar">
+    <span style="font-family:var(--font-pixel);font-size:8px;color:var(--color-accent-gold)">🚶 Walking Through Memories</span>
+    <button class="btn btn-small btn-primary" id="exit-walkthrough">Back to Village</button>
+  </div>
+
+  <!-- Top Bar -->
+  <header id="top-bar">
+    <div class="logo">Village</div>
+    <div class="top-bar-actions">
+      <button id="btn-notifications" class="icon-btn">
+        🔔
+        <span class="badge">3</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Tab Bar -->
+  <nav id="tab-bar">
+    <button class="tab active" data-panel="hearth">
+      <span class="tab-icon">🔥</span>
+      <span class="tab-label">Hearth</span>
+    </button>
+    <button class="tab" data-panel="quests">
+      <span class="tab-icon">📜</span>
+      <span class="tab-label">Quests</span>
+    </button>
+    <button class="tab" data-panel="memories">
+      <span class="tab-icon">📖</span>
+      <span class="tab-label">Memories</span>
+    </button>
+    <button class="tab" data-panel="friends">
+      <span class="tab-icon">👥</span>
+      <span class="tab-label">Friends</span>
+    </button>
+  </nav>
+</div>
+
+<!-- Scripts (dependency order) -->
+<script src="js/data.js"></script>
+<script src="js/villager.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/hearth.js"></script>
+<script src="js/quests.js"></script>
+<script src="js/confetti.js"></script>
+<script src="js/townsquare.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

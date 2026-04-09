@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  /* Fonts */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-body: 'Courier New', Courier, monospace;
+
+  /* Core palette (derived from town.png) */
+  --color-bg: #2a1e0f;
+  --color-panel: #3d2b1f;
+  --color-panel-darker: #2e1f14;
+  --color-parchment: #f5e6c8;
+  --color-parchment-dark: #d4c4a0;
+  --color-text-dark: #2a1e0f;
+  --color-text-light: #f5e6c8;
+  --color-accent-gold: #e8a735;
+  --color-accent-gold-dark: #b87e20;
+  --color-green: #5b8c3e;
+  --color-blue: #4a7fb5;
+  --color-red: #c0392b;
+
+  /* Mood ring colors */
+  --mood-energized: #f1c40f;
+  --mood-peaceful: #2ecc71;
+  --mood-stressed: #e74c3c;
+  --mood-excited: #e67e22;
+  --mood-lonely: #3498db;
+  --mood-creative: #9b59b6;
+
+  /* Pulse states */
+  --pulse-active: #2ecc71;
+  --pulse-away: #f39c12;
+  --pulse-dnd: #e74c3c;
+  --pulse-sleeping: #636e72;
+
+  /* Z-index bands */
+  --z-town: 0;
+  --z-daynight: 1;
+  --z-villagers: 2;        /* 2–999, Y-sorted */
+  --z-profile: 1000;
+  --z-panels: 2000;
+  --z-toasts: 3000;
+  --z-confetti: 3000;
+  --z-topbar: 4000;
+  --z-tabbar: 4000;
+  --z-modal: 5000;
+
+  /* Layout */
+  --topbar-h: 48px;
+  --tabbar-h: 64px;
+  --panel-width: 420px;
+  --panel-narrow: 280px;
+  --panel-wide: 520px;
+
+  /* Pixel border shorthand */
+  --border-pixel: 4px solid var(--color-bg);
+  --shadow-pixel: 4px 4px 0 rgba(0,0,0,0.3);
+}

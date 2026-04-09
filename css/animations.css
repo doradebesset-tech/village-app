@@ -1,0 +1,91 @@
+/* Villager bob while walking */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Mood ring pulse */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.55; }
+}
+
+/* Activity bubble float */
+@keyframes bubble-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+/* Click bounce */
+@keyframes click-bounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Panel slide in from right */
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Panel slide in from left */
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+/* Profile card pop */
+@keyframes card-pop {
+  0% { opacity: 0; transform: scale(0.8) translateY(10px); }
+  70% { opacity: 1; transform: scale(1.03) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Toast slide down */
+@keyframes toast-in {
+  from { transform: translateX(-50%) translateY(-120%); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes toast-out {
+  from { transform: translateX(-50%) translateY(0); opacity: 1; }
+  to { transform: translateX(-50%) translateY(-120%); opacity: 0; }
+}
+
+/* Star twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Confetti fall */
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* Hover lift */
+@keyframes hover-lift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-3px); }
+}
+
+/* Gold flash for quest completion */
+@keyframes gold-flash {
+  0% { box-shadow: 0 0 0 0 rgba(232, 167, 53, 0.6); }
+  50% { box-shadow: 0 0 20px 10px rgba(232, 167, 53, 0.4); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 167, 53, 0); }
+}
+
+/* Loading bar fill */
+@keyframes load-fill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* Notification badge pulse */
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}

@@ -15,7 +15,10 @@
       "Bash(unzip -o /tmp/gh.zip -d /tmp/gh_extracted)",
       "Bash(sudo cp:*)",
       "Bash(~/bin/gh auth:*)",
-      "Bash(~/bin/gh repo:*)"
+      "Bash(~/bin/gh repo:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(git push:*)"
     ]
   }
 }
